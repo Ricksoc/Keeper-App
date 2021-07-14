@@ -9,15 +9,13 @@ function App() {
     <div>
       <Header />
       <div>
-        {Notes.map((noteInfo) => {
-          return (
-            <Note
-              key={noteInfo.key}
-              title={noteInfo.title}
-              content={noteInfo.content}
-            />
-          );
-        })}
+        {Notes.map((noteInfo) => (
+          <Note
+            key={noteInfo.key}
+            title={noteInfo.title}
+            content={noteInfo.content}
+          />
+        ))}
       </div>
       <Footer />
     </div>
