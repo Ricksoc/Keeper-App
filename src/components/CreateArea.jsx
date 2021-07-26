@@ -1,12 +1,17 @@
 import React from "react";
 
-function CreateArea() {
+function CreateArea(areaProps) {
+
+
   return (
     <div>
-      <form>
+      <form onSubmit={(event) => {
+          areaProps.addNote(event)
+          event.preventDefault();
+      }}>
         <input name="title" placeholder="Title" />
         <textarea name="content" placeholder="Take a note..." rows="3" />
-        <button>Add</button>
+        <button type="submit">Add</button>
       </form>
     </div>
   );

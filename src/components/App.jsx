@@ -1,18 +1,33 @@
-import React from "react";
+import React, { useState } from "react";
 import Header from "./Header";
 import Note from "./Note";
 import Footer from "./Footer";
-import Notes from "../notes.js";
 import CreateArea from "./CreateArea";
 
+
 function App() {
+  const [keeperNotes, setKeeperNotes] = useState([{
+    title: "First title",
+    content: "This is some content"
+  }]);
+
+  function addNote(e) {
+    setKeeperNotes((prevValue) => {
+      return (
+  [...prevValue, {
+    title: e.target.title.value,
+    content: e.target.content.value
+  }])
+})
+  }
+
   return (
     <div>
       <Header />
-      <CreateArea />
-        {Notes.map((noteInfo) => (
+      <CreateArea addNote={addNote} />
+        {keeperNotes.map((noteInfo, index) => (
           <Note
-            key={noteInfo.key}
+            key={index}
             title={noteInfo.title}
             content={noteInfo.content}
           />
