@@ -14,11 +14,11 @@ function App() {
   function addNote(e) {
     setKeeperNotes((prevValue) => {
       return (
-  [...prevValue, {
-    title: e.target.title.value,
-    content: e.target.content.value
-  }])
-})
+        [...prevValue, {
+        title: e.target.title.value,
+        content: e.target.content.value
+      }])
+    })
   }
 
   return (
