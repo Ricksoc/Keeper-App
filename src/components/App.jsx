@@ -4,34 +4,36 @@ import Note from "./Note";
 import Footer from "./Footer";
 import CreateArea from "./CreateArea";
 
-
 function App() {
-  const [keeperNotes, setKeeperNotes] = useState([{
-    title: "First title",
-    content: "This is some content"
-  }]);
+  const [keeperNotes, setKeeperNotes] = useState([]);
 
-  function addNote(e) {
+  function addNote(note) {
     setKeeperNotes((prevValue) => {
-      return (
-        [...prevValue, {
-        title: e.target.title.value,
-        content: e.target.content.value
-      }])
-    })
+      return [...prevValue, note];
+    });
+  }
+
+  function deleteNote(id) {
+    setKeeperNotes((prevItems) => {
+      return prevItems.filter((note, index) => {
+        return index !== id;
+      });
+    });
   }
 
   return (
     <div>
       <Header />
       <CreateArea addNote={addNote} />
-        {keeperNotes.map((noteInfo, index) => (
-          <Note
-            key={index}
-            title={noteInfo.title}
-            content={noteInfo.content}
-          />
-        ))}
+      {keeperNotes.map((noteInfo, index) => (
+        <Note
+          key={index}
+          id={index}
+          title={noteInfo.title}
+          content={noteInfo.content}
+          deleteNote={deleteNote}
+        />
+      ))}
       <Footer />
     </div>
   );
